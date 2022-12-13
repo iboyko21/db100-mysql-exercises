@@ -13,9 +13,11 @@
 ## 1. SELECT statements
 
 # 1a. Select all columns from the actor table.
-select * from actor;
+SELECT * FROM actor;
+
 
 # 1b. Select only the last_name column from the actor table.
+SELECT last_name FROM actor;
 
 
 # 1c. Select only the following columns from the film table.
@@ -27,6 +29,13 @@ select * from actor;
 # rental_rate           Exists in film table.
 # total_rental_cost     rental_duration * rental_rate
 
+SELECT
+    title,
+    description,
+    rental_duration,
+    rental_rate,
+    rental_duration * rental_rate as total_rental_cost
+FROM film;
 
 # ---------------------------------------------------------#
 
@@ -34,14 +43,15 @@ select * from actor;
 ## 2. DISTINCT operator
 
 # 2a. Select all distinct (different) last names from the actor table.
+SELECT DISTINCT last_name FROM actor;
 
 
 # 2b. Select all distinct (different) postal codes from the address table.
+SELECT DISTINCT postal_code FROM address;
 
 
 # 2c. Select all distinct (different) ratings from the film table.
-
-
+SELECT DISTINCT rating FROM film;
 
 # ---------------------------------------------------------#
 
@@ -49,9 +59,11 @@ select * from actor;
 ## 3. WHERE clause
 
 # 3a. Select the title, description, rating, movie length columns from the films table that last 3 hours or longer.
+SELECT title, description, rating, movie_length FROM films WHERE movie_length >= 3;
 
 
 # 3b. Select the payment id, amount, and payment date columns from the payments table for payments made on or after 05/27/2005.
+SELECT payment_id, amount, payment_date FROM payments WHERE payment_date > '05/27/2005';
 
 
 # 3c. Select the primary key, amount, and payment date columns from the payment table for payments made on 05/27/2005.
