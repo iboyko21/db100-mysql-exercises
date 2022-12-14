@@ -65,22 +65,22 @@ SELECT DISTINCT rating FROM film;
 
 # 3a. Select the title, description, rating, movie length columns from the films table that last 3 hours or longer.
 
-SELECT title, description, rating, movie_length FROM films WHERE movie_length >= 180;
+SELECT title, description, rating, length FROM film WHERE length >= 180;
 
 
 # 3b. Select the payment id, amount, and payment date columns from the payments table for payments made on or after 05/27/2005.
 
-SELECT payment_id, amount, payment_date FROM payment WHERE payment_date > '2005-05-27';
+SELECT payment_id, amount, payment_date FROM payment WHERE payment_date >= '2005-05-27';
 
 
 # 3c. Select the primary key, amount, and payment date columns from the payment table for payments made on 05/27/2005.
 
-SELECT primary_key, amount, payment_date FROM payment WHERE payment_date > '2005-05-27';
+SELECT payment_id, amount, payment_date FROM payment WHERE DATE(payment_date) = '2005-05-27';
 
 
 # 3d. Select all columns from the customer table for rows that have a last name beginning with "S" and a first name ending with "N".
 
-SELECT * from customer WHERE last_name LIKE 'S%' and first_name LIKE 'N%';
+SELECT * from customer WHERE last_name LIKE 'S%' and first_name LIKE '%N';
 
 
 # 3e. Select all columns from the customer table for rows where the customer is inactive or has a last name ending with "M".
@@ -90,7 +90,7 @@ SELECT * FROM customer WHERE active = 0 OR last_name LIKE '%M';
 
 # 3f. Select all columns from the category table for rows where the primary key is greater than 4 and the name field begins with either "C", "S" or "T".
 
-SELECT * from category WHERE category_id > 4 AND name LIKE 'C%' OR 'S%' OR 'T%';
+SELECT * from category WHERE category_id > 4 AND name LIKE 'C%' OR name LIKE 'S%' OR name LIKE 'T%';
 
 
 # 3g. Select all columns minus the password column from the staff table for rows that contain a password.
@@ -118,7 +118,8 @@ SELECT
     address_id, 
     picture, 
     email, 
-    store_id, 
+    store_id,
+    active,
     username, 
     last_update 
 FROM staff WHERE password IS NULL;
@@ -137,10 +138,15 @@ SELECT phone, district FROM address WHERE district IN ('California', 'England', 
 # 4b. Select the payment id, amount, and payment date columns from the payment table for payments made on 05/25/2005, 05/27/2005, and 05/29/2005.
 # (Use the IN operator and the DATE function, instead of the AND operator as in previous exercises.)
 
-SELECT * FROM payment WHERE DATE(payment_date) IN ('2005-05-25', '2005-05-27', '2005-05-29');
+SELECT 
+    payment_id, 
+    amount, 
+    payment_date 
+FROM payment 
+WHERE DATE(payment_date) IN ('2005-05-25', '2005-05-27', '2005-05-29');
 
 
-# 4c. Select all columns from the film table for films rated G, PG-13 or NC-17.
+# 4c. Select all columns from the film table for film rated G, PG-13 or NC-17.
 
 SELECT * FROM film WHERE rating IN ('G', 'PG-13', 'NC-17');
 
@@ -152,10 +158,10 @@ SELECT * FROM film WHERE rating IN ('G', 'PG-13', 'NC-17');
 
 # 5a. Select all columns from the payment table for payments made between midnight 05/25/2005 and 1 second before midnight 05/26/2005.
 
-SELECT * FROM payment WHERE payment_date BETWEEN '2005-05-25 00:00:00' AND '2005-05-26 11:59:59';
+SELECT * FROM payment WHERE payment_date BETWEEN '2005-05-25 00:00:00' AND '2005-05-25 23:59:59';
 
 
-# 5b. Select the following columns from the film table for films where the length of the description is between 100 and 120.
+# 5b. Select the following columns from the film table for film where the length of the description is between 100 and 120.
 #
 # COLUMN NAME           Note
 # title                 Exists in film table.
@@ -212,12 +218,12 @@ SELECT * FROM payment LIMIT 20;
 
 # 7b. Select the payment id, payment date and amount columns from the payment table for rows where the payment amount is greater than 5 and only select rows whose zero-based index in the result set is between 51-100.
 
-SELECT payment_id, payment_date, amount FROM payment WHERE amount > 5 LIMIT 50,100;
+SELECT payment_id, payment_date, amount FROM payment WHERE amount > 5 LIMIT 50;
 
 
 # 7c. Select all columns from the customer table, limiting results to those where the zero-based index is between 101-200.
 
-SELECT * FROM customer LIMIT 100,200;
+SELECT * FROM customer LIMIT 100;
 
 
 # ---------------------------------------------------------#
@@ -276,10 +282,10 @@ ON customer.last_name = actor.last_name;
 # 9b. Select the customer first_name/last_name and actor first_name/last_name columns from performing a right join between the customer and actor column on the last_name column in each table. (i.e. `customer.last_name = actor.last_name`)
 
 SELECT
-    customer.first_name,
-    customer.last_name,
-    actor.first_name,
-    actor.last_name,
+    customer.first_name as customer_first_name,
+    customer.last_name as customer_last_name,
+    actor.first_name as actor_first_name,
+    actor.last_name as actor_last_name
 FROM customer
 RIGHT JOIN actor
 ON customer.last_name = actor.last_name;
@@ -288,10 +294,10 @@ ON customer.last_name = actor.last_name;
 # 9c. Select the customer first_name/last_name and actor first_name/last_name columns from performing an inner join between the customer and actor column on the last_name column in each table. (i.e. `customer.last_name = actor.last_name`)
 
 SELECT
-    customer.first_name,
-    customer.last_name,
-    actor.first_name,
-    actor.last_name
+    customer.first_name as customer_first_name,
+    customer.last_name as customer_last_name,
+    actor.first_name as actor_first_name,
+    actor.last_name as actor_last_name
 FROM customer
 INNER JOIN actor
 ON customer.last_name = actor.last_name;
