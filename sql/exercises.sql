@@ -114,6 +114,7 @@ SELECT * FROM film WHERE rating IN ('G', 'PG-13', 'NC-17');
 ## 5. BETWEEN operator
 
 # 5a. Select all columns from the payment table for payments made between midnight 05/25/2005 and 1 second before midnight 05/26/2005.
+SELECT * FROM payment WHERE payment_date BETWEEN '2005-05-25 00:00:00' AND '2005-05-26 11:59:59';
 
 
 # 5b. Select the following columns from the film table for films where the length of the description is between 100 and 120.
@@ -123,6 +124,8 @@ SELECT * FROM film WHERE rating IN ('G', 'PG-13', 'NC-17');
 # description           Exists in film table.
 # release_year          Exists in film table.
 # total_rental_cost     rental_duration * rental_rate
+
+SELECT title, description, release_year, rental_duration * rental_rate as total_rental_cost FROM film WHERE CHAR_LENGTH(description) BETWEEN '100' AND '120';
 
 
 # ---------------------------------------------------------#
