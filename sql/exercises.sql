@@ -179,12 +179,15 @@ SELECT title, length, description, rental_rate FROM film WHERE description LIKE 
 ## 7. LIMIT Operator
 
 # 7a. Select all columns from the payment table and only include the first 20 rows.
+SELECT * FROM payment LIMIT 20;
 
 
 # 7b. Select the payment id, payment date and amount columns from the payment table for rows where the payment amount is greater than 5 and only select rows whose zero-based index in the result set is between 51-100.
+SELECT payment_id, payment_date, amount FROM payment WHERE amount > 5 LIMIT 50,100;
 
 
 # 7c. Select all columns from the customer table, limiting results to those where the zero-based index is between 101-200.
+SELECT * FROM customer LIMIT 100,200;
 
 
 # ---------------------------------------------------------#
