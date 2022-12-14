@@ -95,12 +95,33 @@ SELECT * from category WHERE category_id > 4 AND name LIKE 'C%' OR 'S%' OR 'T%';
 
 # 3g. Select all columns minus the password column from the staff table for rows that contain a password.
 
-SELECT staff_id, first_name, last_name, address_id, picture, email, store_id, active, username, last_update FROM staff WHERE password IS NOT NULL;
+SELECT 
+    staff_id, 
+    first_name, 
+    last_name, 
+    address_id, 
+    picture, 
+    email, 
+    store_id, 
+    active, 
+    username, 
+    last_update 
+FROM staff WHERE password IS NOT NULL;
 
 
 # 3h. Select all columns minus the password column from the staff table for rows that do not contain a password.
 
-SELECT staff_id, first_name, last_name, address_id, picture, email, store_id, username, last_update FROM staff WHERE password IS NULL;
+SELECT 
+    staff_id, 
+    first_name, 
+    last_name, 
+    address_id, 
+    picture, 
+    email, 
+    store_id, 
+    username, 
+    last_update 
+FROM staff WHERE password IS NULL;
 
 
 # ---------------------------------------------------------#
@@ -170,7 +191,13 @@ SELECT title, description, rental_duration FROM film WHERE description LIKE '%Bo
 # 6c. Select the following columns from the film table where the description contains the word "Database" and the length of the film is greater than 3 hours.
 # Title, Length, Description, Rental Rate
 
-SELECT title, length, description, rental_rate FROM film WHERE description LIKE '%Database%' and length >= '180';
+SELECT 
+    title, 
+    length, 
+    description, 
+    rental_rate 
+FROM film 
+WHERE description LIKE '%Database%' and length >= '180';
 
 
 # ---------------------------------------------------------#
