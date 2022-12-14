@@ -96,13 +96,16 @@ SELECT staff_id, first_name, last_name, address_id, picture, email, store_id, us
 ## 4. IN operator
 
 # 4a. Select the phone and district columns from the address table for addresses in California, England, Taipei, or West Java.
+SELECT phone, district FROM address WHERE district IN ('California', 'England', 'Taipei', 'West Java');
 
 
 # 4b. Select the payment id, amount, and payment date columns from the payment table for payments made on 05/25/2005, 05/27/2005, and 05/29/2005.
 # (Use the IN operator and the DATE function, instead of the AND operator as in previous exercises.)
+SELECT * FROM payment WHERE DATE(payment_date) IN ('2005-05-25', '2005-05-27', '2005-05-29');
 
 
 # 4c. Select all columns from the film table for films rated G, PG-13 or NC-17.
+SELECT * FROM film WHERE rating IN ('G', 'PG-13', 'NC-17');
 
 
 # ---------------------------------------------------------#
