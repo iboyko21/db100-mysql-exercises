@@ -196,6 +196,7 @@ SELECT * FROM customer LIMIT 100,200;
 ## 8. ORDER BY statement
 
 # 8a. Select all columns from the film table and order rows by the length field in ascending order.
+SELECT * FROM film ORDER BY length ASC;
 
 
 # 8b. Select all distinct ratings from the film table ordered by rating in descending order.
