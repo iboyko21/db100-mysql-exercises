@@ -179,14 +179,17 @@ SELECT title, length, description, rental_rate FROM film WHERE description LIKE 
 ## 7. LIMIT Operator
 
 # 7a. Select all columns from the payment table and only include the first 20 rows.
+
 SELECT * FROM payment LIMIT 20;
 
 
 # 7b. Select the payment id, payment date and amount columns from the payment table for rows where the payment amount is greater than 5 and only select rows whose zero-based index in the result set is between 51-100.
+
 SELECT payment_id, payment_date, amount FROM payment WHERE amount > 5 LIMIT 50,100;
 
 
 # 7c. Select all columns from the customer table, limiting results to those where the zero-based index is between 101-200.
+
 SELECT * FROM customer LIMIT 100,200;
 
 
@@ -196,17 +199,32 @@ SELECT * FROM customer LIMIT 100,200;
 ## 8. ORDER BY statement
 
 # 8a. Select all columns from the film table and order rows by the length field in ascending order.
+
 SELECT * FROM film ORDER BY length ASC;
 
 
 # 8b. Select all distinct ratings from the film table ordered by rating in descending order.
 
+SELECT DISTINCT rating FROM film ORDER BY rating DESC;
+
 
 # 8c. Select the payment date and amount columns from the payment table for the first 20 payments ordered by payment amount in descending order.
+
+SELECT payment_date, amount FROM payment ORDER BY amount DESC LIMIT 20;
 
 
 # 8d. Select the title, description, special features, length, and rental duration columns from the film table for the first 10 films with behind the scenes footage under 2 hours in length and a rental duration between 5 and 7 days, ordered by length in descending order.
 
+SELECT 
+    title, 
+    description, 
+    special_features, 
+    length, 
+    rental_duration 
+FROM film 
+WHERE length < 120 AND rental_duration BETWEEN 5 AND 7 
+ORDER BY length DESC 
+LIMIT 10;
 
 # ---------------------------------------------------------#
 
