@@ -341,4 +341,3 @@ LEFT JOIN address
 ON staff.address_id = address.address_id
 LEFT JOIN city
 ON address.city_id = city.city_id;
-
